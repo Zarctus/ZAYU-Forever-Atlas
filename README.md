@@ -1,67 +1,76 @@
 # ZAYU Forever Atlas
 
-**Personal World of Warcraft addon discovery and research tool for Windows.**
+**A visual World of Warcraft addon discovery companion for Windows.**
 
-> **Status:** v1.0.1 prototype · non-commercial hobby project · unofficial and not affiliated with CurseForge, Overwolf, Blizzard Entertainment, or addon authors.
+> **Project status:** v1.0.1 development prototype · free, personal, non-commercial · independently developed and not affiliated with CurseForge, Overwolf, Blizzard Entertainment, or addon authors.
 
-ZAYU Forever Atlas helps players discover and compare World of Warcraft addons in a searchable, visual catalog. It is designed for players who want to review recently updated or newly published projects and quickly understand their purpose, including through **optional French-language AI summaries**.
+ZAYU Forever Atlas is a desktop companion for discovering, comparing, and understanding World of Warcraft addons. It brings together project details in a searchable visual library, with a particular focus on **French-speaking players** and optional AI-assisted summaries.
 
-The tool is not a mod hosting platform, an addon installer, or a replacement for CurseForge. Each listing links back to its original CurseForge project.
+**CurseForge remains the original source of project information.** Each addon entry is intended to link directly to its author’s CurseForge project page. Atlas is not a mod-hosting service, an addon distribution platform, or an installer.
 
-## Interface
+## Interface preview
 
-The prototype includes three main sections: a **scan center**, an **AI prompt / JSON import assistant**, and a **searchable visual library**. Screenshots are available in the project preview package; they use illustrative/demo data and do not demonstrate a successful live CurseForge scan.
+### Visual addon library
 
-## What the prototype does
+![Atlas library interface preview](docs/screenshots/library.png)
 
-- Provides a Windows desktop UI built with **Python, pywebview, HTML, CSS, and JavaScript**.
-- Lets users browse and organize addon titles, descriptions, images where available, and links to their original project pages.
-- Supports two discovery views: **recently updated** and **recently created** addons, with duplicate detection across views.
-- Provides optional **user-initiated AI prompt generation** to summarize descriptions in French. AI processing is performed outside the application when the user chooses to send the prompt to an AI service and manually import the response as JSON.
-- Includes search, filters, list/card views, and image galleries when a project provides suitable images.
-- Contains an optional **Chrome extension for manual, user-initiated capture** of pages that the user can access normally; it does not attempt to defeat captchas or access restrictions.
+### French-language AI summary assistant
 
-**Current limitations:** the automated website collection path may receive HTTP 403. Live collection and the Windows executable build have not yet been fully validated on a user PC. Available project data and gallery images depend on CurseForge and the individual addon pages.
+![Atlas AI assistant interface preview](docs/screenshots/ai-assistant.png)
 
-## Intended CurseForge API integration
+*These are prototype interface screenshots with illustrative or empty-state data; they do not show a completed live API import.*
 
-We are requesting access to the **official CurseForge third-party API** to retrieve addon metadata using authorized endpoints instead of relying on website scraping. The intended information includes:
+## Main features
 
-- addon/project names, IDs, and original CurseForge URLs;
-- descriptions and relevant version metadata;
-- project icons and screenshots, if provided;
-- update and release information to assist discovery.
+- **Discover projects:** explore addon information, including recently updated projects and new releases where supported by the data source.
+- **Compare and organize:** combine overlapping results by project identifier and browse titles, project links, descriptions, icons, and available screenshots.
+- **Explore visually:** search, filter, switch between card and list views, and inspect image galleries where available.
+- **Understand addons in French:** optionally prepare structured prompts for an external AI assistant, then manually import the resulting French summaries as JSON.
+- **Retain source attribution:** preserve original project titles, URLs, and author links; the AI workflow is designed to summarize rather than invent addon information.
 
-API requests would be user-initiated, paginated, rate-conscious, and subject to the applicable API terms. The official API may not provide the same sorting options as the website: for example, release date is not always equivalent to project creation date.
+The interface is built using **Python, pywebview, HTML, CSS, and JavaScript**. The current prototype runs locally on Windows.
 
-**Data handling and permissions:** the prototype supports a user-local catalog, but we are seeking clarification or explicit authorization before enabling persistent storage of **API-derived** metadata or sending **API-derived** descriptions to external AI services. An API key will not be committed to this repository or shared in logs. Features that cannot comply with the granted API terms will be adjusted or disabled.
+## CurseForge API integration — access requested
 
-The application **does not distribute, download, mirror, or rehost addon files**. Any future distribution feature would require the necessary permissions from authors and the platform.
+We are seeking approval to use the **official CurseForge third-party API** as the authorized source for:
+
+- project identifiers, names, descriptions, and original CurseForge URLs;
+- supported World of Warcraft versions and update information;
+- project icons and screenshots, when made available by the API;
+- paginated addon discovery with reasonable request volumes.
+
+The proposed integration is **user-initiated and rate-conscious**. We intend to respect API limits, platform terms, and author attribution. Some website sorting options may not have exact API equivalents; Atlas will distinguish those cases rather than claim otherwise.
+
+**Development status:** the prototype currently includes experimental browser-based discovery and an optional, manually initiated Chrome capture/import workflow for pages users can normally access. Those methods can encounter access restrictions and are **not** presented as the finished API integration. A working, authorized API workflow is the objective of this application request.
+
+**Data use requires clarification:** Atlas is designed around a user-local catalog. We are requesting guidance or explicit authorization before enabling persistent storage of API-derived metadata or passing API-derived descriptions to external AI services. We will adapt or disable functions that are not permitted. API credentials will never be committed to this repository.
+
+Atlas **does not download, redistribute, mirror, or host addon files**. Any future distribution functionality would require the relevant creator and platform permissions.
 
 ## Audience and business model
 
-- **Audience:** World of Warcraft players, especially French-speaking users exploring addons.
-- **Purpose:** personal discovery, comparison, organization, and understanding of addon projects.
-- **Business model:** none. No ads, subscriptions, donations, affiliate revenue, or software sales are planned.
-- **Attribution:** original authors retain ownership of their content; links lead users to the original CurseForge project pages.
+- **Users:** World of Warcraft players, particularly French-speaking players researching addons.
+- **Use case:** personal discovery, organization, comparison, and understanding.
+- **Monetization:** none. There are no ads, subscriptions, donations, affiliate links, or software sales planned.
+- **Creators:** original addon authors keep ownership and attribution; Atlas directs users to their original CurseForge pages.
 
-## Prototype installation (Windows)
+## Prototype availability
 
-The current prototype requires **Python 3.11+** and a Windows environment with Edge WebView2. For the application source and installer, use the project's locally distributed v1.0.1 prototype package; this repository is initially intended as a public project description for the API access application.
+The current desktop build is a development prototype requiring **Windows, Python 3.11+, and Edge WebView2**. This GitHub repository presently serves as the project's public technical overview for the CurseForge API application; it is **not** a published production release.
 
-The prototype is still under development and is not yet represented as a production-ready, fully tested release.
+The UI and local JSON workflow have been tested using illustrative data. Live metadata retrieval and an end-to-end authorized API integration still require validation and API approval.
 
-## Development roadmap
+## Development priorities
 
-1. Confirm official third-party API access and permitted data-handling practices.
-2. Validate authorized discovery, metadata, and screenshot endpoints on a real Windows system.
-3. Improve data accuracy, attribution, duplicate handling, and error diagnostics.
-4. Polish the French-language catalog and evaluate compliant options for summaries and storage.
+1. Obtain authorization for API access and clarify the permitted handling of metadata, screenshots, and AI summaries.
+2. Implement and validate authorized API-based discovery in the desktop application.
+3. Improve source attribution, reliability, update tracking, and duplicate detection.
+4. Refine the French visual catalog and release only features compatible with the applicable terms.
 
-## Compliance and credits
+## Legal and acknowledgments
 
-CurseForge and Overwolf are trademarks of their respective owners. World of Warcraft and Blizzard Entertainment are trademarks of Blizzard Entertainment. The project is an independent fan-made utility and is **not endorsed by or affiliated with** those parties.
+CurseForge and Overwolf are trademarks of their respective owners. World of Warcraft and Blizzard Entertainment are trademarks of Blizzard Entertainment. ZAYU Forever Atlas is an unofficial, independent fan-made project and is not endorsed by those organizations.
 
-API documentation and conditions: [CurseForge support](https://support.curseforge.com/).
+For applicable API documentation and policies, refer to [CurseForge Support](https://support.curseforge.com/).
 
-**Contact:** via the GitHub repository owner, [Zarctus](https://github.com/Zarctus).
+**Project contact:** [Zarctus on GitHub](https://github.com/Zarctus).

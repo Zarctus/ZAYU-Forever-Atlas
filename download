@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.spec
+
+# Local data and credentials
+.env
+.env.*
+!.env.example
+catalogue.json
+*.log
+*.key
+*.pem
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
